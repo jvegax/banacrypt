@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
-import { MenuIcon, XIcon } from "@heroicons/react/outline";
-
+import { XIcon } from "@heroicons/react/outline";
+import 'animate.css'
 import Layout from "../components/Layout";
 
 export default function Example() {
@@ -79,9 +79,9 @@ export default function Example() {
                   <div className="rounded-md shadow">
                     <a
                       href="#"
-                      className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10"
+                      className="animate__animated animate__pulse animate__infinite	 w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10"
                     >
-                      Donate some crypto 🤍
+                      Support the project 🤍
                     </a>
                   </div>
                 </div>
