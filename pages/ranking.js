@@ -4,6 +4,10 @@ import RankingList from "../components/RankingList";
 const Ranking = ({ coinRanking }) => {
   return (
     <Layout page="Ranking">
+      <div className="text-center m-8">
+        <h1 className="font-bold text-gray-800 text-xl">Ranking by market cap</h1>
+      </div>
+     
       <RankingList coinRanking={coinRanking} />
     </Layout>
   );

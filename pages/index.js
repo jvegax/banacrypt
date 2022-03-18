@@ -67,13 +67,13 @@ export default function Example() {
             <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
               <div className="sm:text-center lg:text-left">
                 <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
-                  <span className="block xl:inline">The latest info</span>{" "}
+                  <span className="block xl:inline">Get up to date</span>{" "}
                   <span className="block text-indigo-600 xl:inline">
-                    about cryptocurrencies 
+                    with Infocrypto
                   </span>
                 </h1>
                 <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                  Get up to day with Infocrypto. Check the ranking by market capitalization, guess the price by market cap. And don't miss the latest news by the most influence crypto media
+                  Check the ranking by market cap, show the price of A with the market cap of B. And don't miss the latest news by the most influence crypto media.
                 </p>
                 <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                   <div className="rounded-md shadow">

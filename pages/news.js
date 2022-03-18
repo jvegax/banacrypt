@@ -7,6 +7,8 @@ const News = ({ news }) => {
     <>
       <Layout page="News" />
 
+      <h1 className="text-xl  text-center text-gray-800 font-bold m-8">The latest news about crypto!</h1>
+
       <div className="grid grid-cols-1 gap-3 text-center m-8 md:grid-cols-3">
         {news.map((article) => (
           <Article 
