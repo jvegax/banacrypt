@@ -11,7 +11,7 @@ const Coin = ({ info, fullData, position}) => {
       <p className="text-center grow w-1">{position+1}</p>
       <p className="grow w-16 flex">
           <img width={26} src={`https://cryptocompare.com/${IMAGEURL}`} className="mr-2"/>
-          {FullName} <span className="text-gray-400 ml-2"> {Name}</span><a target="_blank" href='https://accounts.binance.com/en/register?ref=70967063' className="animate__animated animate__heartBeat animate__infinite ml-4  text-blue-600">Buy</a></p>
+          {FullName} <span className="text-gray-400 ml-2"> {Name}</span><a target="_blank" href='https://accounts.binance.com/en/register?ref=70967063' className="animate__animated animate__heartBeat animate__infinite ml-4  text-blue-600"><img width={28} src='/buy.png' /></a></p>
       <p className={`grow w-5 ${priceColor}`}>{PRICE}</p>
       <p className={`grow w-5 ${priceColor}`}>{CHANGEPCT24HOUR}%</p>
       <p className="grow w-5">{MKTCAP}</p>
