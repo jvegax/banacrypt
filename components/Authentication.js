@@ -2,12 +2,9 @@ import { useEffect, useCallback } from "react";
 import { useWeb3React } from "@web3-react/core";
 import { connector } from "../config/web3";
 import AuthButton from "./AuthButton";
-import { useRouter } from "next/router";
 
 
 const Authentication = () => {
-
-  const router = useRouter()
 
   const { activate, active, deactivate, account, error, chainId } =
     useWeb3React();

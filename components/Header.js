@@ -15,7 +15,6 @@ function classNames(...classes) {
 }
 
 export default function Header() {
-  const router = useRouter();
 
   const {
     activate,
@@ -42,16 +41,19 @@ export default function Header() {
     localStorage.removeItem("previouslyConnected");
   };
 
-  const handleConnect = () => {
-    router.push("/profile");
-    connect();
-  };
 
   const navigation = [
     { name: "🏆Ranking", href: "/ranking", current: false },
     { name: "💸Price calculator", href: "/calculator", current: false },
     { name: "🔥Hot news", href: "/news", current: false },
   ];
+
+  const parseWallet = (account) => {
+    const firstPart = account.slice(0, 6);
+    const secondPart = account.slice(account.length - 4);
+    const res = firstPart + "..." + secondPart;
+    return res
+  };
 
   return (
     <Disclosure as="nav" className="bg-gray-800">
@@ -109,16 +111,22 @@ export default function Header() {
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {/* Profile dropdown */}
                 <Menu as="div" className="ml-3 relative">
-                  <div>
+                  <div className="flex">
                     <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                       <span className="sr-only">Open user menu</span>
                       <img
-                        
                         className="h-8 w-8 rounded-full"
                         src="/metamask-logo.png"
                         alt="fox"
                       />
                     </Menu.Button>
+                    {activeWallet && (
+                      <Menu.Button>
+                        <p className="text-white font-bold ml-4">
+                          ({parseWallet(account)})
+                        </p>
+                      </Menu.Button>
+                    )}
                   </div>
 
                   <Transition
@@ -148,7 +156,7 @@ export default function Header() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            onClick={activeWallet ? disconnect : handleConnect}
+                            onClick={activeWallet ? disconnect : connect }
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
