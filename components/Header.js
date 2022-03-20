@@ -115,15 +115,15 @@ export default function Header() {
                     <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                       <span className="sr-only">Open user menu</span>
                       <img
-                        className="h-8 w-8 rounded-full"
+                        className="h-8 w-8 rounded-full mt-1"
                         src="/metamask-logo.png"
                         alt="fox"
                       />
                     </Menu.Button>
                     {activeWallet && (
                       <Menu.Button>
-                        <p className="text-white font-bold ml-4">
-                          ({parseWallet(account)})
+                        <p className="text-gray-800 font-medium ml-4 bg-white rounded-full text-sm p-2">
+                          {parseWallet(account)}
                         </p>
                       </Menu.Button>
                     )}
