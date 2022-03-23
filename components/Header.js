@@ -122,7 +122,7 @@ export default function Header() {
                     </Menu.Button>
                     {activeWallet && (
                       <Menu.Button>
-                        <p className="text-gray-800 font-medium ml-4 bg-white rounded-full text-sm p-2">
+                        <p className="text-gray-800 font-bold ml-4 bg-white rounded-full text-sm p-2">
                           {parseWallet(account)}
                         </p>
                       </Menu.Button>
