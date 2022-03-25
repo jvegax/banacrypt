@@ -1,6 +1,7 @@
 
 const CoinList = ( { coinRanking } ) => {
 
+  // TODO : change with tailwind select component
   return (
     <>
       (

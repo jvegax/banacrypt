@@ -122,7 +122,7 @@ const Calculator = ({ coinRanking }) => {
       </div>
     </Layout>
   );
-};x
+};
 
 export async function getServerSideProps() {
   const API_KEY =
