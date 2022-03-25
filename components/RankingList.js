@@ -13,9 +13,8 @@ const RankingList = ({ coinRanking }) => {
         {coinRanking.map((coin) => (
           <Coin 
             key={coin.CoinInfo.Id}
-            info={coin.CoinInfo}
+            coin={coin}
             position={coinRanking.indexOf(coin)}
-            fullData={coin.DISPLAY.USD}
           />
         ))}
       </div>

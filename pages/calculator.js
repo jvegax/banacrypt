@@ -17,7 +17,6 @@ const Calculator = ({ coinRanking }) => {
     setCoinB(coinA)
   }
 
-  console.log(coinRanking)
 
   return (
     <Layout page="Calculator">
@@ -123,7 +122,7 @@ const Calculator = ({ coinRanking }) => {
       </div>
     </Layout>
   );
-};
+};x
 
 export async function getServerSideProps() {
   const API_KEY =
@@ -132,8 +131,6 @@ export async function getServerSideProps() {
   const response = await fetch(url);
   const data = await response.json();
   const coinRanking = data.Data;
-
-  console.log(coinRanking)
 
   return {
     props: {

@@ -1,9 +1,9 @@
 import 'animate.css'
 
-const Coin = ({ info, fullData, position}) => {
-  const { FullName, Name } = info;
-  const { PRICE, CHANGEPCT24HOUR, MKTCAP, CIRCULATINGSUPPLY, IMAGEURL } = fullData;
-
+const Coin = ({ coin, position }) => {
+  const { FullName, Name } = coin.CoinInfo;
+  const { PRICE, CHANGEPCT24HOUR, MKTCAP, IMAGEURL } = coin.DISPLAY.USD;
+  const { CIRCULATINGSUPPLY } = coin.RAW.USD;
   const priceColor = CHANGEPCT24HOUR >= 0 ? 'text-green-700' : 'text-red-700'
   
   return (
@@ -15,7 +15,7 @@ const Coin = ({ info, fullData, position}) => {
       <p className={`grow w-5 ${priceColor}`}>{PRICE}</p>
       <p className={`grow w-5 ${priceColor}`}>{CHANGEPCT24HOUR}%</p>
       <p className="grow w-5">{MKTCAP}</p>
-      <p className="grow w-5">{CIRCULATINGSUPPLY}</p>
+      <p className="grow w-5">{CIRCULATINGSUPPLY.toFixed(2)} {Name}</p>
     </div>
   );
 };
