@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+
 import "animate.css"
 
-const CalculatorResult = ({ coinA, coinB }) => {
-  const [result, setResult] = useState(0);
-
+const CalculatorResult = ({ coinA, coinB, setResult, children }) => {
+  
   const getResult = async () => {
     const API_KEY =
       "d42299a74a9a833934c98b492e0004c8a45d48e93830f5d1136f78679546a12d";
@@ -21,7 +21,7 @@ const CalculatorResult = ({ coinA, coinB }) => {
 
   useEffect(() => {
     getResult();
-  }, [result]);
+  }, [coinA,coinB]);
 
   return (
     <>
@@ -31,7 +31,7 @@ const CalculatorResult = ({ coinA, coinB }) => {
           The price of {coinA} with the market cap of {coinB}
         </p>
         <p>
-          <span className="text-red-200 text-2xl">${result}</span>
+          <span className="text-red-200 md:text-2xl text-lg">${children}</span>
         </p>
       </div>
     </>

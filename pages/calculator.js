@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import Layout from "../components/Layout";
 import Image from "next/image";
@@ -10,6 +10,14 @@ import "animate.css";
 const Calculator = ({ coinRanking }) => {
   const [coinA, setCoinA] = useState("");
   const [coinB, setCoinB] = useState("");
+  const [result, setResult] = useState(0);
+
+  const swapCoins = () => {
+    setCoinA(coinB)
+    setCoinB(coinA)
+  }
+
+  console.log(coinRanking)
 
   return (
     <Layout page="Calculator">
@@ -53,13 +61,14 @@ const Calculator = ({ coinRanking }) => {
       focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               aria-label="Default select example"
             >
-              <CoinList />
+              <CoinList coinRanking={coinRanking} />
             </select>
           </div>
         </div>
 
         <div className="text-center mb-4">
           <Image
+            onClick={ swapCoins }
             layout="fixed"
             width="35px"
             height="35px"
@@ -90,17 +99,18 @@ const Calculator = ({ coinRanking }) => {
       transition
       ease-in-out
       m-0
+      mb-2
       focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               aria-label="Default select example"
             >
-              <CoinList />
+              <CoinList coinRanking={coinRanking} />
             </select>
           </div>
         </div>
 
         <div className="text-center m-8 flex text-sm">
-          {coinA !== "" && coinB !== "" ? (
-            <CalculatorResult coinA={coinA} coinB={coinB} />
+          { (coinA !== "" && coinB !== "") ? (
+            <CalculatorResult coinA={coinA} coinB={coinB} setResult={setResult}>{result}</CalculatorResult>
           ) : (
             <>
               <div className="w-1/3"></div>
@@ -123,9 +133,11 @@ export async function getServerSideProps() {
   const data = await response.json();
   const coinRanking = data.Data;
 
+  console.log(coinRanking)
+
   return {
     props: {
-      coinRanking,
+      coinRanking
     },
   };
 }

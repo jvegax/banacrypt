@@ -1,13 +1,18 @@
 
-const CoinList = () => {
+const CoinList = ( { coinRanking } ) => {
 
   return (
     <>
-      <option value="#">...</option>
-      <option value="BTC">Bitcoin</option>
-      <option value="ETH">Ehtereum</option>
-      <option value="ADA">Cardano</option>
-      <option value="SHIB">Shiba</option>
+      (
+        <option className="text-center" value=""> ... </option>
+      )
+      {
+        coinRanking.map( coin => 
+          { return coin.RAW.USD.CIRCULATINGSUPPLY > 0 && (<option className="text-center" key={ coin.CoinInfo.Id } value={ coin.CoinInfo.Name }>{ coin.CoinInfo.FullName } ${ coin.CoinInfo.Name }</option>) }
+        )
+        
+      }
+      
     </>
   );
 };
