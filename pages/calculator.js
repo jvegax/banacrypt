@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import Layout from "../components/Layout";
-import Image from "next/image";
 import CoinList from "../components/CoinList";
 import CalculatorResult from "../components/CalculatorResult";
 
@@ -11,11 +10,6 @@ const Calculator = ({ coinRanking }) => {
   const [coinA, setCoinA] = useState("");
   const [coinB, setCoinB] = useState("");
   const [result, setResult] = useState(0);
-
-  const swapCoins = () => {
-    setCoinA(coinB)
-    setCoinB(coinA)
-  }
 
 
   return (
@@ -34,76 +28,8 @@ const Calculator = ({ coinRanking }) => {
               </h1>
             </div>
 
-            <div className="text-center font-bold text-gray-700">
-              <label htmlFor="selectA">Select A</label>
-            </div>
-
-            <select
-              onChange={(e) => setCoinA(e.target.value)}
-              id="selectA"
-              className="form-select appearance-none
-              shadow-lg
-      block
-      w-full
-      px-3
-      py-1.5
-      text-base
-      font-normal
-      text-gray-700
-      bg-white bg-clip-padding bg-no-repeat
-      border border-solid border-gray-300
-      rounded
-      transition
-      ease-in-out
-      m-0
-      mb-2
-      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-              aria-label="Default select example"
-            >
-              <CoinList coinRanking={coinRanking} />
-            </select>
-          </div>
-        </div>
-
-        <div className="text-center mb-4">
-          <Image
-            onClick={ swapCoins }
-            layout="fixed"
-            width="35px"
-            height="35px"
-            src="/calculator.png"
-          />
-        </div>
-
-        <div className="flex justify-center">
-          <div className="mb-3 xl:w-96">
-            <div className="text-center font-bold text-gray-700">
-              <label htmlFor="selectB">Select B</label>
-            </div>
-            <select
-              onChange={(e) => setCoinB(e.target.value)}
-              id="selectB"
-              className="form-select appearance-none
-              shadow-lg
-      block
-      w-full
-      px-3
-      py-1.5
-      text-base
-      font-normal
-      text-gray-700
-      bg-white bg-clip-padding bg-no-repeat
-      border border-solid border-gray-300
-      rounded
-      transition
-      ease-in-out
-      m-0
-      mb-2
-      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-              aria-label="Default select example"
-            >
-              <CoinList coinRanking={coinRanking} />
-            </select>
+            
+            <CoinList coinRanking={coinRanking} setCoinA={setCoinA} setCoinB={setCoinB} coinA={coinA} coinB={coinB}/>
           </div>
         </div>
 

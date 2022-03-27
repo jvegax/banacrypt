@@ -82,7 +82,7 @@ export default function Header() {
                   <Link href="/">
                     <img
                       className="hidden lg:block h-10 w-auto"
-                      src="/info-crypto.png"
+                      src="/banacrypt-logo.png"
                       alt="Workflow"
                     />
                   </Link>
