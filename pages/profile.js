@@ -1,13 +1,10 @@
 import React from "react";
 import Layout from "../components/Layout";
-import { useEffect, useCallback } from "react";
 import { useWeb3React } from "@web3-react/core";
-import { connector } from "../config/web3";
-import { PaperClipIcon } from '@heroicons/react/solid'
-import { useRouter } from "next/router";
+
 
 const Profile = () => {
-  const { activate, active, deactivate, account, error, chainId } =
+  const { account, chainId } =
     useWeb3React();
 
   return (

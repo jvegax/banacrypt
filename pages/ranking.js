@@ -1,7 +1,7 @@
 import Layout from "../components/Layout";
 import RankingList from "../components/RankingList";
 
-const Ranking = ({ coinRanking }) => {
+const Ranking = ({ coinRanking }) => {1
   return (
     <Layout page="Ranking">
       <div className="text-center m-8">
@@ -14,8 +14,7 @@ const Ranking = ({ coinRanking }) => {
 };
 
 export async function getServerSideProps() {
-  const API_KEY = "d42299a74a9a833934c98b492e0004c8a45d48e93830f5d1136f78679546a12d"
-  const page = "1"
+  const API_KEY = process.env.API_KEY
   const url = `https://min-api.cryptocompare.com/data/top/mktcapfull?limit=20&tsym=USD&api_key=${API_KEY}`;
   const response = await fetch(url);
   const data = await response.json();

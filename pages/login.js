@@ -5,7 +5,7 @@ import Authentication from "../components/Authentication";
 const Login = () => {
   return (
     <Layout page="login">
-      <Authentication></Authentication>
+      <Authentication />
     </Layout>
   );
 };

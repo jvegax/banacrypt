@@ -1,14 +1,12 @@
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
+import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 
 import { useEffect, useCallback } from "react";
 import { useWeb3React } from "@web3-react/core";
 import { connector } from "../config/web3";
-
-import { useRouter } from "next/router";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -20,9 +18,7 @@ export default function Header() {
     activate,
     active: activeWallet,
     deactivate,
-    account,
-    error,
-    chainId,
+    account
   } = useWeb3React();
 
   const connect = useCallback(() => {

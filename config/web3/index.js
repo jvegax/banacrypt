@@ -1,5 +1,5 @@
 import web3 from "web3";
-import { InjectedConnector } from "@web3-react/injected-connector"; '@web3-react/injected-connector';
+import { InjectedConnector } from "@web3-react/injected-connector";
 
 const ETH_NET_ID = 1;
 const RINKEBY_NET_ID = 4;

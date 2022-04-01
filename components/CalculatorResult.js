@@ -5,8 +5,7 @@ import "animate.css"
 const CalculatorResult = ({ coinA, coinB, setResult, children }) => {
   
   const getResult = async () => {
-    const API_KEY =
-      "d42299a74a9a833934c98b492e0004c8a45d48e93830f5d1136f78679546a12d";
+    const API_KEY = process.env.API_KEY
     const urlA = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${coinA}&tsyms=USD&api_key=${API_KEY}`;
     const urlB = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${coinB}&tsyms=USD&api_key=${API_KEY}`;
 
@@ -16,7 +15,7 @@ const CalculatorResult = ({ coinA, coinB, setResult, children }) => {
     const { CIRCULATINGSUPPLY } = dataA.RAW[`${coinA}`].USD;
     const { MKTCAP } = dataB.RAW[`${coinB}`].USD;
 
-    setResult((MKTCAP / CIRCULATINGSUPPLY).toFixed(2));
+    setResult((MKTCAP / CIRCULATINGSUPPLY).toFixed(2)); 
   };
 
   useEffect(() => {
