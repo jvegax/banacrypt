@@ -1,11 +1,11 @@
 import styles from '../styles/Article.module.css'
 
 const Article = ({ article }) => {
-  const { imageurl, source, title, body, url } = article;
+  const { imageUrl, source, title, body, url } = article;
   return (
     <div className="p-4  rounded-lg hover:bg-purple-100 shadow-lg border border-purple-200">
       <div className="grid grid-cols-1 md:grid-cols-2">
-        <img className="rounded-lg" width={128} src={imageurl} />
+        <img className="rounded-lg" width={128} src={imageUrl} />
         <p className="mt-12 font-bold uppercase text-purple-900">{source}</p>
       </div>
       <div className="mb-4">

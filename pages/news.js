@@ -7,19 +7,29 @@ import { gql, useQuery } from "@apollo/client";
 const LATEST_NEWS = gql`
   query {
     getNews {
+      imageUrl
+      source
       title
+      body
+      url
     }
   }
 `;
 
-const News = ({ news }) => {
+const News = () => {
+  const { data } = useQuery(LATEST_NEWS);
+  const articles = []
+
   try {
-    const { data } = useQuery(LATEST_NEWS);
-    console.log(data.getNews);
+    articles = data.getNews;
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
   
+  if (!articles) {
+    return null;
+  }
+
   return (
     <>
       <Layout page="News" />
@@ -28,26 +38,17 @@ const News = ({ news }) => {
         The latest news about crypto!
       </h1>
 
-      <div className="grid grid-cols-1 gap-3 text-center m-8 md:grid-cols-3">
-        {news.map((article) => (
-          <Article key={article.id} article={article} />
-        ))}
-      </div>
+      {articles.length > 0 ? (
+        <div className="grid grid-cols-1 gap-3 text-center m-8 md:grid-cols-3">
+          {articles.map((article) => (
+            <Article key={article.id} article={article} />
+          ))}
+        </div>
+      ) : (
+        <p>Loading ... </p>
+      )}
     </>
   );
 };
-
-export async function getServerSideProps() {
-  const API_KEY = process.env.API_KEY;
-  const url = `https://min-api.cryptocompare.com/data/v2/news/?lang=EN&api_key=${API_KEY}`;
-  const response = await fetch(url);
-  const data = await response.json();
-
-  return {
-    props: {
-      news: data.Data,
-    },
-  };
-}
 
 export default News;

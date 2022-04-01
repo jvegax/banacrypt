@@ -18,13 +18,11 @@ const client = new ApolloClient({
 
 function MyApp({ Component, pageProps }) {
   return (
- 
-      <Web3ReactProvider getLibrary={getLibrary}>
-        <ApolloProvider client={client}>
-          <Component {...pageProps} />
-        </ApolloProvider>
-      </Web3ReactProvider>
-
+    <Web3ReactProvider getLibrary={getLibrary}>
+      <ApolloProvider client={client}>
+        <Component {...pageProps} />
+      </ApolloProvider>
+    </Web3ReactProvider>
   );
 }
 
