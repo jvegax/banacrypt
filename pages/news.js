@@ -17,18 +17,7 @@ const LATEST_NEWS = gql`
 `;
 
 const News = () => {
-  const { data } = useQuery(LATEST_NEWS);
-  const articles = []
-
-  try {
-    articles = data.getNews;
-  } catch (error) {
-    console.log(error)
-  }
-  
-  if (!articles) {
-    return null;
-  }
+  const { loading, error, data } = useQuery(LATEST_NEWS);
 
   return (
     <>
@@ -38,14 +27,22 @@ const News = () => {
         The latest news about crypto!
       </h1>
 
-      {articles.length > 0 ? (
+      {loading ? (
+        <div className="text-center m-4 bg-indigo-600 rounded-xl p-2">
+          <p className="font-bold text-white text-xl">Loading...</p>
+        </div>
+      ) : !loading && !error ? (
         <div className="grid grid-cols-1 gap-3 text-center m-8 md:grid-cols-3">
-          {articles.map((article) => (
+          {data.getNews.map((article) => (
             <Article key={article.id} article={article} />
           ))}
         </div>
       ) : (
-        <p>Loading ... </p>
+        <div className="text-center m-4 bg-red-500 rounded-xl p-2">
+          <p className="font-bold text-white text-xl">
+            Ops... something is not working! Try again later
+          </p>
+        </div>
       )}
     </>
   );
