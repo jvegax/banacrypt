@@ -6,6 +6,7 @@ import CalculatorResult from "../components/CalculatorResult";
 
 import "animate.css";
 
+
 const Calculator = ({ coinRanking }) => {
   const [coinA, setCoinA] = useState("");
   const [coinB, setCoinB] = useState("");
