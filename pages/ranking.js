@@ -38,6 +38,7 @@ const Ranking = () => {
         <div className="text-center m-4 bg-red-500 rounded-xl p-2">
           <p className="font-bold text-white text-xl">
             Ops... something is not working! Try again later
+            { console.log(error) }
           </p>
         </div>
       )}
