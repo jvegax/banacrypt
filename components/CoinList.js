@@ -13,8 +13,8 @@ const CoinList = ({ coinRanking, setCoinA, setCoinB, coinA, coinB }) => {
   const [selectedB, setSelectedB] = useState(coinRanking[0]);
 
   useEffect(() => {
-    setCoinA(coinRanking[2].CoinInfo.Name);
-    setCoinB(coinRanking[0].CoinInfo.Name);
+    setCoinA(coinRanking[2]);
+    setCoinB(coinRanking[0]);
   }, []);
 
   const swapCoins = () => {
@@ -22,6 +22,7 @@ const CoinList = ({ coinRanking, setCoinA, setCoinB, coinA, coinB }) => {
     setCoinB(coinA);
   };
 
+  console.log(coinA)
   return (
     <>
       {/* COIN A */}
@@ -35,15 +36,12 @@ const CoinList = ({ coinRanking, setCoinA, setCoinB, coinA, coinB }) => {
               <Listbox.Button className="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                 <span className="flex items-center">
                   <img
-                    src={`https://cryptocompare.com/${selectedA.DISPLAY.USD.IMAGEURL}`}
+                    src={`https://cryptocompare.com/${selectedA.imageUrl}`}
                     alt=""
                     className="flex-shrink-0 h-6 w-6 rounded-full"
                   />
                   <span className="ml-3 block truncate">
-                    {selectedA.CoinInfo.FullName}{" "}
-                    <span className="text-gray-500">
-                      {selectedA.CoinInfo.Name}
-                    </span>
+                    {selectedA.fullName}{" "}
                   </span>
                 </span>
                 <span className="ml-3 absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
@@ -64,7 +62,7 @@ const CoinList = ({ coinRanking, setCoinA, setCoinB, coinA, coinB }) => {
                 <Listbox.Options className="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
                   {coinRanking.map((coin) => (
                     <Listbox.Option
-                      key={coin.CoinInfo.Id}
+                      key={coin.id}
                       className={({ active }) =>
                         classNames(
                           active ? "text-white bg-indigo-600" : "text-gray-900",
@@ -77,10 +75,10 @@ const CoinList = ({ coinRanking, setCoinA, setCoinB, coinA, coinB }) => {
                         <>
                           <div
                             className="flex items-center"
-                            onClick={() => setCoinA(coin.CoinInfo.Name)}
+                            onClick={() => setCoinA(coin)}
                           >
                             <img
-                              src={`https://cryptocompare.com/${coin.DISPLAY.USD.IMAGEURL}`}
+                              src={`https://cryptocompare.com/${coin.imageUrl}`}
                               alt=""
                               className="flex-shrink-0 h-6 w-6 rounded-full"
                             />
@@ -90,10 +88,7 @@ const CoinList = ({ coinRanking, setCoinA, setCoinB, coinA, coinB }) => {
                                 "ml-3 block truncate"
                               )}
                             >
-                              {coin.CoinInfo.FullName}{" "}
-                              <span className="text-gray-500">
-                                {coin.CoinInfo.Name}
-                              </span>
+                              {coin.fullName}{" "}
                             </span>
                           </div>
 
@@ -142,15 +137,12 @@ const CoinList = ({ coinRanking, setCoinA, setCoinB, coinA, coinB }) => {
               <Listbox.Button className="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                 <span className="flex items-center">
                   <img
-                    src={`https://cryptocompare.com/${selectedB.DISPLAY.USD.IMAGEURL}`}
+                    src={`https://cryptocompare.com/${selectedB.imageUrl}`}
                     alt=""
                     className="flex-shrink-0 h-6 w-6 rounded-full"
                   />
                   <span className="ml-3 block truncate">
-                    {selectedB.CoinInfo.FullName}{" "}
-                    <span className="text-gray-500">
-                      {selectedB.CoinInfo.Name}
-                    </span>
+                    {selectedB.fullName}{" "}
                   </span>
                 </span>
                 <span className="ml-3 absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
@@ -171,7 +163,7 @@ const CoinList = ({ coinRanking, setCoinA, setCoinB, coinA, coinB }) => {
                 <Listbox.Options className="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
                   {coinRanking.map((coin) => (
                     <Listbox.Option
-                      key={coin.CoinInfo.Id}
+                      key={coin.id}
                       className={({ active }) =>
                         classNames(
                           active ? "text-white bg-indigo-600" : "text-gray-900",
@@ -184,10 +176,10 @@ const CoinList = ({ coinRanking, setCoinA, setCoinB, coinA, coinB }) => {
                         <>
                           <div
                             className="flex items-center"
-                            onClick={() => setCoinB(coin.CoinInfo.Name)}
+                            onClick={() => setCoinB(coin)}
                           >
                             <img
-                              src={`https://cryptocompare.com/${coin.DISPLAY.USD.IMAGEURL}`}
+                              src={`https://cryptocompare.com/${coin.imageUrl}`}
                               alt=""
                               className="flex-shrink-0 h-6 w-6 rounded-full"
                             />
@@ -197,10 +189,7 @@ const CoinList = ({ coinRanking, setCoinA, setCoinB, coinA, coinB }) => {
                                 "ml-3 block truncate"
                               )}
                             >
-                              {coin.CoinInfo.FullName}{" "}
-                              <span className="text-gray-500">
-                                {coin.CoinInfo.Name}
-                              </span>
+                              {coin.fullName}{" "}
                             </span>
                           </div>
 

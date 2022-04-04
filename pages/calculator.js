@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { gql, useQuery } from "@apollo/client";
 
 import Layout from "../components/Layout";
 import CoinList from "../components/CoinList";
@@ -6,12 +7,31 @@ import CalculatorResult from "../components/CalculatorResult";
 
 import "animate.css";
 
+const GET_RANKING = gql`
+  query {
+    getRanking {
+      id
+      name
+      fullName
+      price
+      change24h
+      marketCap
+      circulatingSupply
+      imageUrl
+    }
+  }
+`;
 
-const Calculator = ({ coinRanking }) => {
+const Calculator = () => {
   const [coinA, setCoinA] = useState("");
   const [coinB, setCoinB] = useState("");
   const [result, setResult] = useState(0);
 
+  const {
+    loading: loadRanking,
+    error: errorRanking,
+    data: dataRanking,
+  } = useQuery(GET_RANKING);
 
   return (
     <Layout page="Calculator">
@@ -29,40 +49,39 @@ const Calculator = ({ coinRanking }) => {
               </h1>
             </div>
 
-            
-            <CoinList coinRanking={coinRanking} setCoinA={setCoinA} setCoinB={setCoinB} coinA={coinA} coinB={coinB}/>
+            {loadRanking ? (
+              <div className="text-center m-4 bg-indigo-600 rounded-xl p-2">
+                <p className="font-bold text-white text-xl">Loading...</p>
+              </div>
+            ) : !loadRanking && !errorRanking ? (
+              <CoinList
+                coinRanking={dataRanking.getRanking}
+                setCoinA={setCoinA}
+                setCoinB={setCoinB}
+                coinA={coinA}
+                coinB={coinB}
+              />
+            ) : (
+              <div className="text-center m-4 bg-red-500 rounded-xl p-2">
+                <p className="font-bold text-white text-xl">
+                  Ops... something is not working! Try again later
+                  {console.log(error)}
+                </p>
+              </div>
+            )}
           </div>
         </div>
 
-        <div className="text-center m-8 flex text-sm">
-          { (coinA !== "" && coinB !== "") ? (
-            <CalculatorResult coinA={coinA} coinB={coinB} setResult={setResult}>{result}</CalculatorResult>
-          ) : (
-            <>
-              <div className="w-1/3"></div>
-              <button className="bg-indigo-500 w-1/3 hover:bg-indigo-700 animate__animated animate__pulse animate__infinite p-5 uppercase rounded-full text-white font-bold">
-                Select 2 coins
-              </button>
-            </>
-          )}
-        </div>
+        {coinA && coinB && (
+          <div className="text-center m-8 flex text-sm">
+            <CalculatorResult coinA={coinA} coinB={coinB} setResult={setResult}>
+              {result}
+            </CalculatorResult>
+          </div>
+        )}
       </div>
     </Layout>
   );
 };
-
-export async function getServerSideProps() {
-  const API_KEY = process.env.API_KEY
-  const url = `https://min-api.cryptocompare.com/data/top/mktcapfull?limit=20&tsym=USD&api_key=${API_KEY}`;
-  const response = await fetch(url);
-  const data = await response.json();
-  const coinRanking = data.Data;
-
-  return {
-    props: {
-      coinRanking
-    },
-  };
-}
 
 export default Calculator;
